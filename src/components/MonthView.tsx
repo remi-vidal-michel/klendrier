@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { ActionIcon, Group, Button, Modal } from "@mantine/core";
-import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
+import { ActionIcon, Group, Button, Modal, Affix, Switch, Drawer } from "@mantine/core";
+import { IconChevronLeft, IconChevronRight, IconPlus } from "@tabler/icons-react";
 import { MobileMonthView } from "@mantine/schedule";
 import { MonthPicker } from "@mantine/dates";
 import dayjs from "dayjs";
@@ -10,6 +10,7 @@ export function MonthView() {
     const [date, setDate] = useState(dayjs().format("YYYY-MM-DD"));
     const [selectedDate, setSelectedDate] = useState<string | null>(dayjs().format("YYYY-MM-DD"));
     const [monthPickerOpened, setMonthPickerOpened] = useState(false);
+    const [createModalOpened, setCreateModalOpened] = useState(false);
 
     return (
         <>
@@ -19,6 +20,8 @@ export function MonthView() {
                 selectedDate={selectedDate}
                 onSelectedDateChange={setSelectedDate}
                 locale="fr"
+                eventsHeaderFormat="dddd D MMMM"
+                labels={{ noEvents: "Aucun évènement" }}
                 styles={{
                     mobileMonthViewHeader: { paddingInline: 0 },
                     mobileMonthViewCalendar: { paddingInline: 0 },
@@ -76,6 +79,22 @@ export function MonthView() {
                     locale="fr"
                 />
             </Modal>
+
+            <Affix position={{ bottom: 20, right: 20 }}>
+                <ActionIcon size={48} radius="xl" variant="light" onClick={() => setCreateModalOpened(true)}>
+                    <IconPlus size={24} />
+                </ActionIcon>
+            </Affix>
+
+            <Drawer
+                opened={createModalOpened}
+                onClose={() => setCreateModalOpened(false)}
+                title="Nouvel évènement"
+                position="bottom"
+                radius="lg"
+            >
+                <Switch label="Toute la journée" labelPosition="left" defaultChecked />
+            </Drawer>
         </>
     );
 }
