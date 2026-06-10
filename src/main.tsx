@@ -1,22 +1,24 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
 import { MantineProvider, createTheme, type CSSVariablesResolver } from "@mantine/core";
-import App from './App.tsx'
+import { App } from "./App.tsx";
+import "@mantine/dates/styles.css";
+import "@mantine/schedule/styles.css";
 
 const theme = createTheme({
-  headings: { fontFamily: "Outfit, sans-serif" },
+    headings: { fontFamily: "Outfit, sans-serif" },
 });
 
 const cssVariablesResolver: CSSVariablesResolver = () => ({
-  variables: {},
-  light: { "--mantine-color-body": "#F8F8F6" },
-  dark: {},
+    variables: {},
+    light: { "--mantine-color-body": "#F8F8F6" },
+    dark: {},
 });
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <MantineProvider theme={theme} cssVariablesResolver={cssVariablesResolver} defaultColorScheme="auto">
-      <App />
-    </MantineProvider>
-  </StrictMode>,
-)
+createRoot(document.getElementById("root")!).render(
+    <StrictMode>
+        <MantineProvider theme={theme} cssVariablesResolver={cssVariablesResolver} defaultColorScheme="auto">
+            <App />
+        </MantineProvider>
+    </StrictMode>,
+);
