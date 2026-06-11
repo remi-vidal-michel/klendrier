@@ -4,6 +4,7 @@ import { MantineProvider, createTheme, type CSSVariablesResolver } from "@mantin
 import { App } from "./App.tsx";
 import "@mantine/dates/styles.css";
 import "@mantine/schedule/styles.css";
+import "@mantine/carousel/styles.css";
 
 const theme = createTheme({
     headings: { fontFamily: "Outfit, sans-serif" },
